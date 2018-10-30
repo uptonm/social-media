@@ -9,4 +9,5 @@ module.exports = app => {
   // Friend Related API
   app.get("/api/users/:id/friends", actions.getFriends);
   app.put("/api/users/:id/friends", actions.addFriend);
+  app.delete("/api/users/:id/friends", actions.removeFriend);
 };
