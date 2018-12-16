@@ -1,49 +1,41 @@
 import React, { Component } from "react";
-import {
-  Nav,
-  Navbar,
-  NavItem,
-  NavDropdown,
-  MenuItem
-} from "react-bootstrap/lib";
 
 class Header extends Component {
   render() {
     return (
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#brand">React-Bootstrap</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} href="#">
-              Link
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link
-            </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="#">
-              Link Right
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link Right
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <div>
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+          <a class="navbar-brand" href="/">
+            social-media.git
+          </a>
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/feed">
+                Feed
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/trending">
+                Trending
+              </a>
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a href="/auth/log-in" className="nav-link">
+                Log In
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="/auth/sign-up" className="nav-link">
+                Sign Up
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     );
   }
 }
+
 export default Header;
