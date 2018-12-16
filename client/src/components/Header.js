@@ -1,6 +1,29 @@
 import React, { Component } from "react";
 
 class Header extends Component {
+  renderAuth() {
+    switch (this.props.auth) {
+      case undefined:
+        return <div>Loading...</div>;
+      case this.props.auth.status === "logged-out":
+        return (
+          <div>
+            <li className="nav-item">
+              <a href="/auth/log-in" className="nav-link">
+                Log In
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="/auth/sign-up" className="nav-link">
+                Sign Up
+              </a>
+            </li>
+          </div>
+        );
+      default:
+        return <div>{this.props.auth.first}</div>;
+    }
+  }
   render() {
     return (
       <div>
@@ -20,18 +43,7 @@ class Header extends Component {
               </a>
             </li>
           </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a href="/auth/log-in" className="nav-link">
-                Log In
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/auth/sign-up" className="nav-link">
-                Sign Up
-              </a>
-            </li>
-          </ul>
+          <ul className="navbar-nav ml-auto">{this.renderAuth()}</ul>
         </nav>
       </div>
     );
