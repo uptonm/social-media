@@ -9,7 +9,7 @@ class Header extends Component {
         if (this.props.auth.status) {
           return (
             <div>
-              <ul>
+              <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <a href="/auth/google" className="nav-link">
                     Log In
@@ -42,6 +42,7 @@ class Header extends Component {
     }
   }
   render() {
+    console.log(this.props.auth);
     return (
       <div>
         <nav class="navbar navbar-expand navbar-dark bg-dark">

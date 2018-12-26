@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
+import Friends from "./Friends";
 
 class App extends Component {
   state = {
@@ -29,6 +30,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header auth={this.state.auth} />
+            <Friends friends={this.state.auth.friends} />
           </div>
         </BrowserRouter>
       </div>
