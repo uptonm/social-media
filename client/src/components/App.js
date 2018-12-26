@@ -14,6 +14,13 @@ class App extends Component {
   }
   fetchAuth = async () => {
     const auth = await axios.get("/api/current_user");
+    if (auth.status) {
+      this.setState({
+        auth: {
+          status: "logged-out"
+        }
+      });
+    }
     this.setState({ auth: auth.data }, () => console.log(this.state.auth));
   };
   render() {

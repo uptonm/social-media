@@ -5,23 +5,40 @@ class Header extends Component {
     switch (this.props.auth) {
       case undefined:
         return <div>Loading...</div>;
-      case this.props.auth.status === "logged-out":
-        return (
-          <div>
-            <li className="nav-item">
-              <a href="/auth/log-in" className="nav-link">
-                Log In
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/auth/sign-up" className="nav-link">
-                Sign Up
-              </a>
-            </li>
-          </div>
-        );
       default:
-        return <div>{this.props.auth.first}</div>;
+        if (this.props.auth.status) {
+          return (
+            <div>
+              <ul>
+                <li className="nav-item">
+                  <a href="/auth/google" className="nav-link">
+                    Log In
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a href="/auth/google" className="nav-link">
+                    Sign Up
+                  </a>
+                </li>
+              </ul>
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle">{`${
+                  this.props.auth.first
+                } ${this.props.auth.last}`}</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/api/logout">
+                    Log Out
+                  </a>
+                </div>
+              </li>
+            </div>
+          );
+        }
     }
   }
   render() {
