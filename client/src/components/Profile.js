@@ -37,20 +37,22 @@ class Profile extends Component {
   }
   render() {
     return (
-      <Card
-        align="center"
-        image={profileImage}
-        header={`${this.state.first} ${this.state.last}`}
-        meta="Friend"
-        description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
-        extra={
-          // eslint-disable-next-line
-          <a>
-            <Icon name="user" />
-            {`${this.state.friends} Friends`}
-          </a>
-        }
-      />
+      <div align="center">
+        <Card
+          align="center"
+          image={profileImage}
+          header={`${this.state.first} ${this.state.last}`}
+          meta="Friend"
+          description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+          extra={
+            // eslint-disable-next-line
+            <a>
+              <Icon name="user" />
+              {`${this.state.friends} Friends`}
+            </a>
+          }
+        />
+      </div>
     );
   }
 }
