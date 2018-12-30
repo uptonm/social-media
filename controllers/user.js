@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const User = mongoose.model("users");
+const mongoose = require('mongoose');
+const User = mongoose.model('users');
 
 exports.get = async (req, res) => {
   const response = await User.find({});
@@ -39,14 +39,14 @@ exports.addFriend = async (req, res) => {
   });
   if (!isFriend) {
     const addA = await User.findByIdAndUpdate(req.params.id, {
-      $push: { friends: req.body.id }
+      $push: { friends: req.body.id },
     });
     const addB = await User.findByIdAndUpdate(req.body.id, {
-      $push: { friends: req.params.id }
+      $push: { friends: req.params.id },
     });
-    return res.send("Friend Added");
+    return res.send('Friend Added');
   }
-  return res.send("Already Friends");
+  return res.send('Already Friends');
 };
 exports.removeFriend = async (req, res) => {
   const user = await User.findById(req.params.id);
@@ -55,12 +55,12 @@ exports.removeFriend = async (req, res) => {
   });
   if (isFriend) {
     const remA = await User.findByIdAndUpdate(req.params.id, {
-      $pull: { friends: req.body.id }
+      $pull: { friends: req.body.id },
     });
     const remB = await User.findByIdAndUpdate(req.body.id, {
-      $pull: { friends: req.params.id }
+      $pull: { friends: req.params.id },
     });
-    return res.send("Friend removed :(");
+    return res.send('Friend removed :(');
   }
   return res.send("Friend doesn't exist");
 };

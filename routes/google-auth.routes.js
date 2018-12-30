@@ -1,33 +1,33 @@
-const passport = require("passport");
+const passport = require('passport');
 
 module.exports = app => {
   // User attempts to login, begin the oAuth flow
   app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ["profile", "email"]
-    })
+    '/auth/google',
+    passport.authenticate('google', {
+      scope: ['profile', 'email'],
+    }),
   );
 
   app.get(
-    "/auth/google/callback",
-    passport.authenticate("google"),
+    '/auth/google/callback',
+    passport.authenticate('google'),
     (req, res) => {
-      res.redirect("/"); // User logs in, send them to the dashboard
-    }
+      res.redirect('/'); // User logs in, send them to the dashboard
+    },
   );
 
-  app.get("/api/current_user", (req, res) => {
+  app.get('/api/current_user', (req, res) => {
     if (req.user) {
       // Does user exist?/ are they logged in?
       res.send(req.user);
     } else {
-      res.send({ status: "logged-out" });
+      res.send({ status: 'logged-out' });
     }
   });
 
-  app.get("/api/logout", (req, res) => {
+  app.get('/api/logout', (req, res) => {
     req.logout();
-    res.redirect("/"); // User logs out, bring them back to the home page
+    res.redirect('/'); // User logs out, bring them back to the home page
   });
 };
