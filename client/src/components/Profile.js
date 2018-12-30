@@ -11,20 +11,29 @@ class Profile extends Component {
     friends: 17,
   };
   fetchUser = async () => {
-    const id = this.props.history.location.pathname.substring(9, 33);
-    const user = await axios.get(`/api/users/${id}`);
-    console.log(user.data);
+    let id = this.props.history.location.pathname.substring(9, 33);
+    // If profile has no id slug, show user's profile
+    if (id.length === 0) {
+      if (this.props.profile !== undefined) {
+        this.setState({
+          first: this.props.profile.first,
+          last: this.props.profile.last,
+          friends: this.props.profile.friends.length,
+        });
+      }
+    } else {
+      const user = await axios.get(`http://localhost:8000/api/users/${id}`);
+      if (user !== undefined) {
+        this.setState({
+          first: user.data.first,
+          last: user.data.last,
+          friends: user.data.friends.length,
+        });
+      }
+    }
   };
   componentDidMount() {
-    // Check if Loading
     this.fetchUser();
-    if (this.props.profile !== undefined) {
-      this.setState({
-        first: this.props.profile.first,
-        last: this.props.profile.last,
-        friends: this.props.profile.friends.length,
-      });
-    }
   }
   render() {
     return (
