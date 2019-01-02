@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import { Card, Icon } from 'semantic-ui-react';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
-import profileImage from '../assets/elliot.jpg';
+import React, { Component } from "react";
+import { Card, Icon } from "semantic-ui-react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
+import profileImage from "../assets/elliot.jpg";
 
 class Profile extends Component {
   state = {
-    first: '',
-    last: '',
-    friends: 17,
+    first: "",
+    last: "",
+    bio: "",
+    friends: 17
   };
   fetchUser = async () => {
     let id = this.props.history.location.pathname.substring(9, 33);
@@ -18,7 +19,8 @@ class Profile extends Component {
         this.setState({
           first: this.props.profile.first,
           last: this.props.profile.last,
-          friends: this.props.profile.friends.length,
+          bio: this.props.profile.bio,
+          friends: this.props.profile.friends.length
         });
       }
     } else {
@@ -27,7 +29,8 @@ class Profile extends Component {
         this.setState({
           first: user.data.first,
           last: user.data.last,
-          friends: user.data.friends.length,
+          bio: user.data.bio,
+          friends: user.data.friends.length
         });
       }
     }
@@ -43,7 +46,7 @@ class Profile extends Component {
           image={profileImage}
           header={`${this.state.first} ${this.state.last}`}
           meta="Friend"
-          description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+          description={this.state.bio}
           extra={
             // eslint-disable-next-line
             <a>
