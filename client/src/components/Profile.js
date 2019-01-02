@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Icon } from "semantic-ui-react";
+import { Card, Icon, Segment } from "semantic-ui-react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import Avatar from "react-avatar";
@@ -44,20 +44,22 @@ class Profile extends Component {
   render() {
     return (
       <div align="center">
-        <Card
-          align="center"
-          image={<Avatar googleId={this.state.googleId} />}
-          header={`${this.state.first} ${this.state.last}`}
-          meta="Friend"
-          description={this.state.bio}
-          extra={
-            // eslint-disable-next-line
-            <a>
-              <Icon name="user" />
-              {`${this.state.friends} Friends`}
-            </a>
-          }
-        />
+        <Segment vertical>
+          <Card
+            align="center"
+            image={<Avatar googleId={this.state.googleId} />}
+            header={`${this.state.first} ${this.state.last}`}
+            meta="Friend"
+            description={this.state.bio}
+            extra={
+              // eslint-disable-next-line
+              <a>
+                <Icon name="user" />
+                {`${this.state.friends} Friends`}
+              </a>
+            }
+          />
+        </Segment>
       </div>
     );
   }

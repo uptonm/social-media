@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Input, Icon, Menu, Loader } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { Input, Icon, Menu, Loader } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
 
 class Navbar extends Component {
   state = {};
@@ -25,7 +25,7 @@ class Navbar extends Component {
           <Menu.Item
             name="login or signup"
             href="/auth/google"
-            active={activeItem === 'login or signup'}
+            active={activeItem === "login or signup"}
             onClick={this.handleItemClick}
           >
             Login or Signup
@@ -37,7 +37,7 @@ class Navbar extends Component {
           <Menu.Menu>
             <Menu.Item
               name="profile"
-              active={activeItem === 'profile'}
+              active={activeItem === "profile"}
               onClick={this.handleItemClick}
             >
               <Icon name="user circle" />
@@ -46,12 +46,18 @@ class Navbar extends Component {
             <Menu.Item
               name="logout"
               href="/api/logout"
-              active={activeItem === 'logout'}
+              active={activeItem === "logout"}
               onClick={this.handleItemClick}
             />
           </Menu.Menu>
         );
       }
+    }
+  };
+
+  handleKeyPress = e => {
+    if (e.key === "Enter") {
+      console.log("do validate", e.value);
     }
   };
 
@@ -62,24 +68,29 @@ class Navbar extends Component {
       <Menu secondary className="padded">
         <Menu.Item
           name=""
-          active={activeItem === ''}
+          active={activeItem === ""}
           onClick={this.handleItemClick}
         >
           Home
         </Menu.Item>
         <Menu.Item
           name="messages"
-          active={activeItem === 'messages'}
+          active={activeItem === "messages"}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name="friends"
-          active={activeItem === 'friends'}
+          active={activeItem === "friends"}
           onClick={this.handleItemClick}
         />
         <Menu.Menu position="right">
           <Menu.Item>
-            <Input icon="search" placeholder="Search..." />
+            <Input icon="search" placeholder="Search..." list="list" />
+            <datalist id="list">
+              <option value="Profile" onBlur={this.handleKeyPress} />
+              <option value="Chinese" />
+              <option value="Dutch" />
+            </datalist>
           </Menu.Item>
         </Menu.Menu>
         {this.renderAuth()}
