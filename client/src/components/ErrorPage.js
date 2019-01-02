@@ -25,6 +25,9 @@ const ErrorPage = ({ code }) => {
     case "404": {
       return <Error code="404" message="Page not found" />;
     }
+    default: {
+      return <Error code={code} message="Unknown Error, devs... plz fix" />;
+    }
   }
 };
 
