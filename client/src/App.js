@@ -45,6 +45,10 @@ class App extends Component {
                 component={() => <Profile profile={this.state.auth} />}
               />
               <Route path="/profile/:id/friends" component={Friends} />
+              <Route
+                path="/friends"
+                component={() => <Friends profile={this.state.auth} />}
+              />
             </div>
           ) : (
             <div>

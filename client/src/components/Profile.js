@@ -6,6 +6,7 @@ import Avatar from "react-avatar";
 
 class Profile extends Component {
   state = {
+    id: "",
     first: "",
     last: "",
     bio: "",
@@ -35,6 +36,7 @@ class Profile extends Component {
           last: this.props.profile.last,
           bio: this.props.profile.bio,
           googleId: this.props.profile.googleId,
+          id: this.props.profile._id,
           friends: this.props.profile.friends.length
         });
       }
@@ -46,6 +48,7 @@ class Profile extends Component {
           last: user.data.last,
           bio: user.data.bio,
           googleId: user.data.googleId,
+          id: user.data._id,
           friends: user.data.friends.length
         });
       }
@@ -66,7 +69,7 @@ class Profile extends Component {
             description={this.state.bio}
             extra={
               // eslint-disable-next-line
-              <a>
+              <a href={`/profile/${this.state.id}/friends`}>
                 <Icon name="user" />
                 {`${this.state.friends} Friends`}
               </a>
