@@ -13,7 +13,20 @@ class Profile extends Component {
     friends: 17
   };
   fetchUser = async () => {
-    let id = this.props.history.location.pathname.substring(9, 33);
+    let id = "loading";
+    if (this.props.match.params.id) {
+      id = this.props.match.params.id;
+    } else {
+      if (this.props.profile) {
+        id = this.props.profile._id;
+      }
+    }
+
+    // Dont try to set data while data is loading
+    if (id === "loading") {
+      return;
+    }
+
     // If profile has no id slug, show user's profile
     if (id.length === 0) {
       if (this.props.profile !== undefined) {

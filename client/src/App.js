@@ -4,6 +4,7 @@ import axios from "axios";
 import Navbar from "./components/Navbar";
 import Body from "./components/Body";
 import Profile from "./components/Profile";
+import Friends from "./components/Friends";
 import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
@@ -32,12 +33,30 @@ class App extends Component {
           <Navbar auth={this.state.auth} />
           <Route exact path="/" component={Body} />
           {this.state.auth !== false ? (
-            <Route
-              path="/profile"
-              component={() => <Profile profile={this.state.auth} />}
-            />
+            <div>
+              <Route
+                exact
+                path="/profile"
+                component={() => <Profile profile={this.state.auth} />}
+              />
+              <Route
+                exact
+                path="/profile/:id"
+                component={() => <Profile profile={this.state.auth} />}
+              />
+              <Route path="/profile/:id/friends" component={Friends} />
+            </div>
           ) : (
-            <Route path="/profile" component={() => <ErrorPage code="403" />} />
+            <div>
+              <Route
+                path="/profile"
+                component={() => <ErrorPage code="403" />}
+              />
+              <Route
+                path="/friends"
+                component={() => <ErrorPage code="403" />}
+              />
+            </div>
           )}
         </div>
       </Router>
