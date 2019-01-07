@@ -22,8 +22,14 @@ class App extends Component {
     }
   };
 
+  fetchUsers = async () => {
+    let users = await axios.get("/api/users");
+    users = users.data.length;
+    this.setState({ users: users });
+  };
   componentDidMount = () => {
     this.fetchAuth();
+    this.fetchUsers();
   };
 
   render() {
@@ -31,7 +37,11 @@ class App extends Component {
       <Router>
         <div>
           <Navbar auth={this.state.auth} />
-          <Route exact path="/" component={Body} />
+          <Route
+            exact
+            path="/"
+            component={() => <Body users={this.state.users} />}
+          />
           {this.state.auth !== false ? (
             <div>
               <Route

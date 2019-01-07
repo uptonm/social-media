@@ -83,16 +83,7 @@ class Navbar extends Component {
           active={activeItem === "friends"}
           onClick={this.handleItemClick}
         />
-        <Menu.Menu position="right">
-          <Menu.Item>
-            <Input icon="search" placeholder="Search..." list="list" />
-            <datalist id="list">
-              <option value="Profile" onBlur={this.handleKeyPress} />
-              <option value="Chinese" />
-              <option value="Dutch" />
-            </datalist>
-          </Menu.Item>
-        </Menu.Menu>
+        <Menu.Menu position="right" />
         {this.renderAuth()}
       </Menu>
     );
